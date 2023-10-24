@@ -1,9 +1,14 @@
-li {
-  margin-top: 1.5em;
+.articleImage {
+  max-width: 50%;
 }
 
-.articleCard {
-  border: 2px solid red;
+.articles_container {
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  margin-top: 1.5em;
 }
 
 .mainHeading {
@@ -13,4 +18,8 @@ li {
 
 .home_Text {
   text-align: center;
+}
+
+.articleHeader {
+  font-size: 0.5px;
 }
