@@ -1,15 +1,16 @@
-Header {
-  max-width: 300px;
-}
-
-#root {
-  max-width: 50px;
-  margin: 0 auto;
-  padding: 0.5rem;
-  text-align: center;
-  margin-top: 1.5em;
-}
-
 li {
   margin-top: 1.5em;
+}
+
+.articleCard {
+  border: 2px solid red;
+}
+
+.mainHeading {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.home_Text {
+  text-align: center;
 }
