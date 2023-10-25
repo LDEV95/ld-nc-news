@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { formatDate } from "../../Formateddate";
 // import * as api from "../../api";
 
 export default function ArticlesCard({
@@ -16,11 +17,7 @@ export default function ArticlesCard({
   const [err, setErr] = useState(null);
 
   // add in error functionality later on
-  const formattedDate = new Date(created_at).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const formattedDate = formatDate(created_at);
 
   return (
     <article className="articleCard">
@@ -31,14 +28,15 @@ export default function ArticlesCard({
         <img src={article_img_url} alt={title} className="articleImage" />
       )}
 
-      <p className="article_Body">{body}</p>
+      <h4 className="article_Body"> Body {body}</h4>
       <p className="article_Topic">
         Topic: {topic[0].toUpperCase() + topic.slice(1, topic.length)}
       </p>
+
       <p className="article_Comments"> Comments: {comment_count}</p>
       <p className="article_Author"> Created by: {author}</p>
-      <p className="article_CreatedAt"> Created on:{formattedDate}</p>
-      <p className="votes">Number of votes: {votes}</p>
+      <p className="article_CreatedAt"> Created on: {formattedDate}</p>
+      <p className="votes"> Number of votes: {votes}</p>
 
       <section className="button_Container">
         <h4></h4>

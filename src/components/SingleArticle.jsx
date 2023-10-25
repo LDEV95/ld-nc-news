@@ -4,6 +4,7 @@ import ArticlesCard from "./Articlescard";
 // import * as api from "../../api";
 import { getArticlesById } from "../../api";
 import ErrorPage from "./Errors";
+import Comments from "./Comments";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -16,6 +17,7 @@ export default function SingleArticle() {
     getArticlesById(article_id)
       .then((articleData) => {
         setArticle(articleData);
+
         setIsLoading(false);
       })
       .catch(() => {
@@ -33,12 +35,14 @@ export default function SingleArticle() {
         article_id={article.article_id}
         title={article.title}
         article_img_url={article.article_img_url}
+        body={article.body}
         author={article.author}
         topic={article.topic}
         comment_count={article.comment_count}
         created_at={article.created_at}
         votes={article.votes}
       />
+      <Comments article_id={article_id} comment_count={article.comment_count} />
     </section>
   );
 }
