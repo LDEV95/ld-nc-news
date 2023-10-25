@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import * as api from "../../api";
 import ArticlesCard from "./Articlescard";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ErrorPage from "./Errors";
 
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState(null);
-  // const { topic } = useParams();
+  const { topic } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,18 +44,20 @@ export default function ArticlesList() {
           votes,
         }) => {
           return (
-            <ArticlesCard
-              key={article_id}
-              title={title}
-              article_id={article_id}
-              article_img_url={article_img_url}
-              body={body}
-              topic={topic}
-              comment_count={comment_count}
-              author={author}
-              created_at={created_at}
-              votes={votes}
-            />
+            <div className="articles_container">
+              <ArticlesCard
+                key={article_id}
+                title={title}
+                article_id={article_id}
+                article_img_url={article_img_url}
+                body={body}
+                topic={topic}
+                comment_count={comment_count}
+                author={author}
+                created_at={created_at}
+                votes={votes}
+              />
+            </div>
           );
         }
       )}
