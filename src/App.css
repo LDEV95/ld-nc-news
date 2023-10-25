@@ -23,3 +23,7 @@ li {
 .articleHeader {
   font-size: 0.5px;
 }
+
+.comment_Container {
+  border: 2px solid red;
+}
