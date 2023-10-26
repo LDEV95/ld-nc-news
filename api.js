@@ -20,7 +20,15 @@ export const getArticlesById = (article_id) => {
 
 export const getCommentsByArticleId = (article_id) => {
   return newsApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
-    console.log(data);
     return data;
   });
+};
+
+export const changeVote = (article_id, votes) => {
+  return newsApi
+    .patch(`/articles/${article_id}`, { inc_votes: votes })
+    .then((response) => {
+      console.log(response);
+      return response.data.article;
+    });
 };

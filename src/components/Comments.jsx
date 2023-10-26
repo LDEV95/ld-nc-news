@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ErrorPage from "./Errors";
 import { formatDate } from "../../Formateddate";
 
-export default function comments() {
+export default function Comments() {
   const { article_id } = useParams();
   const [comment, setComment] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -43,13 +43,15 @@ export default function comments() {
         const formattedDate = formatDate(created_at);
         return (
           <div className="comment_Container">
-            <comment>
-              <p className="commentText">
-                Posted by: {author} on {formattedDate}
-              </p>
-              <p className="commentText">{body}</p>
-              <p className="commentText">{votes}</p>
-            </comment>
+            <article>
+              <article key={comment_id}>
+                <p className="commentText">
+                  Posted by: {author} on {formattedDate}
+                </p>
+                <p className="commentText">{body}</p>
+                <p className="commentText">{votes}</p>
+              </article>
+            </article>
           </div>
         );
       })}

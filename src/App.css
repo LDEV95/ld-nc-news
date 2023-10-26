@@ -2,11 +2,6 @@
   max-width: 50%;
 }
 
-.articles_container {
-  display: flex;
-  justify-content: center;
-}
-
 li {
   margin-top: 1.5em;
 }
@@ -26,4 +21,30 @@ li {
 
 .comment_Container {
   border: 2px solid red;
+}
+
+.bigContainer {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+ul {
+  display: inline-block;
+}
+
+.navBar {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.navItem {
+  font-size: 1.25rem;
+  margin-right: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home_Text {
+  margin-bottom: 2.5rem;
 }

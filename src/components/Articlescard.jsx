@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { formatDate } from "../../Formateddate";
-// import * as api from "../../api";
+import * as api from "../../api";
 
 export default function ArticlesCard({
   title,
@@ -14,34 +14,56 @@ export default function ArticlesCard({
   created_at,
   votes,
 }) {
-  const [err, setErr] = useState(null);
-
-  // add in error functionality later on
   const formattedDate = formatDate(created_at);
+  const [err, setErr] = useState(null);
+  const [newVote, updateVote] = useState(0);
+
+  const clickHandler = (article_id, voteQuantity) => {
+    updateVote((currentVote) => {
+      return currentVote + voteQuantity;
+    });
+    api
+      .changeVote(article_id, voteQuantity)
+      .then(() => {
+        console.log(article_id, voteQuantity);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErr("Something's not right");
+      });
+  };
 
   return (
     <article className="articleCard">
       <Link to={`/articles/${article_id}`}>
         <h3 id="articleHeader">{title}</h3>
+        {article_img_url && (
+          <img src={article_img_url} alt={title} className="articleImage" />
+        )}
       </Link>
-      {article_img_url && (
-        <img src={article_img_url} alt={title} className="articleImage" />
-      )}
 
-      <h4 className="article_Body"> Body {body}</h4>
       <p className="article_Topic">
         Topic: {topic[0].toUpperCase() + topic.slice(1, topic.length)}
       </p>
 
       <p className="article_Comments"> Comments: {comment_count}</p>
-      <p className="article_Author"> Created by: {author}</p>
+      <p className="article_Author"> Written by: {author}</p>
       <p className="article_CreatedAt"> Created on: {formattedDate}</p>
-      <p className="votes"> Number of votes: {votes}</p>
+      <p className="votes"> Number of votes: {votes + newVote}</p>
 
       <section className="button_Container">
-        <h4></h4>
-        <button>+</button>
-        <button>-</button>
+        <button
+          className="voteUpBtn"
+          disabled={newVote >= 1}
+          onClick={() => clickHandler(article_id, 1)}>
+          +
+        </button>
+        <button
+          className="voteDownBtn"
+          disabled={newVote <= -1}
+          onClick={() => clickHandler(article_id, -1)}>
+          -
+        </button>
         {err ? <p>{err}</p> : null}
       </section>
     </article>

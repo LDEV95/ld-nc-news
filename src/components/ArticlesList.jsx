@@ -31,36 +31,38 @@ export default function ArticlesList() {
 
   return (
     <section>
-      {articles.map(
-        ({
-          title,
-          article_id,
-          article_img_url,
-          body,
-          topic,
-          comment_count,
-          author,
-          created_at,
-          votes,
-        }) => {
-          return (
-            <div className="articles_container">
-              <ArticlesCard
-                key={article_id}
-                title={title}
-                article_id={article_id}
-                article_img_url={article_img_url}
-                body={body}
-                topic={topic}
-                comment_count={comment_count}
-                author={author}
-                created_at={created_at}
-                votes={votes}
-              />
-            </div>
-          );
-        }
-      )}
+      <div className="bigContainer">
+        {articles.map(
+          ({
+            title,
+            article_id,
+            article_img_url,
+            body,
+            topic,
+            comment_count,
+            author,
+            created_at,
+            votes,
+          }) => {
+            return (
+              <div key={article_id} className="articles_container">
+                <ArticlesCard
+                  key={article_id}
+                  title={title}
+                  article_id={article_id}
+                  article_img_url={article_img_url}
+                  body={body}
+                  topic={topic}
+                  comment_count={comment_count}
+                  author={author}
+                  created_at={created_at}
+                  votes={votes}
+                />
+              </div>
+            );
+          }
+        )}
+      </div>
     </section>
   );
 }
