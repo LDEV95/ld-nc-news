@@ -51,3 +51,10 @@ export const getUsers = () => {
     return data;
   });
 };
+
+export const getTopics = () => {
+  return newsApi.get("/topics/").then(({ data }) => {
+    console.log(data);
+    return data;
+  });
+};
