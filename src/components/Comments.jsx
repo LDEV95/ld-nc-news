@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import * as api from "../../api";
 import { useParams } from "react-router-dom";
+import AddComment from "./AddComment";
 import ErrorPage from "./Errors";
 import { formatDate } from "../../Formateddate";
 
 export default function Comments() {
   const { article_id } = useParams();
-  const [comment, setComment] = useState([]);
+  const [comment, setComments] = useState([
+    { comment_id: null, body: "", author: "", votes: 0, created_at: "" },
+  ]);
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState(null);
 
@@ -15,9 +18,8 @@ export default function Comments() {
     api
       .getCommentsByArticleId(article_id)
       .then((commentsData) => {
-        //  console.log(commentsData);
-        setComment(commentsData);
-        // console.log(comment);
+        setComments(commentsData);
+
         setIsLoading(false);
       })
       .catch((err) => {
@@ -25,6 +27,7 @@ export default function Comments() {
         setErr(err);
       });
   }, [article_id]);
+
   if (comment.length === 0) {
     return (
       <>
@@ -39,18 +42,18 @@ export default function Comments() {
   return (
     <section>
       <h2 className="commentsHeader">Comments for this article</h2>
+      <AddComment setComments={setComments} article_id={article_id} />
+
       {comment.map(({ comment_id, body, author, votes, created_at }) => {
         const formattedDate = formatDate(created_at);
         return (
           <div className="comment_Container">
             <article>
-              <article key={comment_id}>
-                <p className="commentText">
-                  Posted by: {author} on {formattedDate}
-                </p>
-                <p className="commentText">{body}</p>
-                <p className="commentText">{votes}</p>
-              </article>
+              <p className="commentText">
+                Posted by: {author} on {formattedDate}
+              </p>
+              <p className="commentText">{body}</p>
+              <p className="commentText">{votes}</p>
             </article>
           </div>
         );
