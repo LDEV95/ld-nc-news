@@ -6,7 +6,7 @@ import ArticlesList from "./components/articlesList";
 import SingleArticle from "./components/SingleArticle";
 import Comment from "./components/Comments";
 import { UserContext } from "./Contexts/UserContext";
-import TopicsPages from "./components/AllTopics";
+import TopicsPages from "./components/TopicsALL";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -17,16 +17,17 @@ function App() {
   });
 
   const [selectedUser, setSelectedUser] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("");
 
   return (
     <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       <div className="App">
-        <Header />
+        <Header setSelectedTopic={setSelectedTopic} />
         <Routes>
           <Route path="/articles" element={<ArticlesList />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
           <Route path="/articles/:article_id/comments" element={<Comment />} />
-          <Route path="/topics" element={<TopicsPages />} />
+          <Route path="/:topic" element={<TopicsPages />} />
         </Routes>
       </div>
     </UserContext.Provider>

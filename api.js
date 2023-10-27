@@ -18,6 +18,17 @@ export const getArticlesById = (article_id) => {
   });
 };
 
+export const getArticlesByTopic = (topic, sort, order) => {
+  return newsApi
+    .get(`/articles?topic=${topic}`, {
+      params: { sort_by: sort, order: order },
+    })
+    .then((response) => {
+      console.log(response.data, "HEHEHEHHEH");
+      return response.data.articles;
+    });
+};
+
 export const getCommentsByArticleId = (article_id) => {
   return newsApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
     //   console.log(data);

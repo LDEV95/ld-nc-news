@@ -2,9 +2,12 @@
 import { Link } from "react-router-dom";
 import UserSelection from "./UserSelection";
 import { useState } from "react";
+import TopicsPages from "./TopicsALL";
+import TopicsByArticle from "./TopicsByArticle";
 
 const Header = () => {
   const [selectedUser, setSelectedUser] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("");
 
   return (
     <header>
@@ -20,10 +23,11 @@ const Header = () => {
           <Link to="/articles">Articles</Link>
         </span>
         <span className="navItem">
-          <Link to="/topics">Topics</Link>
+          <TopicsPages onSelectTopic={setSelectedTopic} />
+          <TopicsByArticle selectedTopic={selectedTopic} />
         </span>
+
         <span className="navItem">
-          {/* <Link to="/users">Users</Link> */}
           <UserSelection onSelectUser={setSelectedUser} />
         </span>
       </nav>
