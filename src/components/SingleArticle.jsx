@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ArticlesCard from "./Articlescard";
-// import * as api from "../../api";
+
 import { getArticlesById } from "../../api";
 import ErrorPage from "./Errors";
 import Comments from "./Comments";

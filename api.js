@@ -20,6 +20,7 @@ export const getArticlesById = (article_id) => {
 
 export const getCommentsByArticleId = (article_id) => {
   return newsApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
+    //   console.log(data);
     return data;
   });
 };
@@ -31,4 +32,22 @@ export const changeVote = (article_id, votes) => {
       console.log(response);
       return response.data.article;
     });
+};
+
+export const postComment = (article_id, newComment) => {
+  return newsApi
+    .post(`/articles/${article_id}/comments`, newComment)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getUsers = () => {
+  return newsApi.get("/users").then(({ data }) => {
+    console.log(data);
+    return data;
+  });
 };

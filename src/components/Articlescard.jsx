@@ -20,8 +20,10 @@ export default function ArticlesCard({
 
   const clickHandler = (article_id, voteQuantity) => {
     updateVote((currentVote) => {
-      return currentVote + voteQuantity;
+      const newVoteValue = currentVote + voteQuantity;
+      return Math.max(Math.min(newVoteValue, 1), -1);
     });
+
     api
       .changeVote(article_id, voteQuantity)
       .then(() => {
@@ -30,6 +32,7 @@ export default function ArticlesCard({
       .catch((err) => {
         console.log(err);
         setErr("Something's not right");
+        updateVote(0);
       });
   };
 
