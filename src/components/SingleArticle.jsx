@@ -16,6 +16,7 @@ export default function SingleArticle() {
     setIsLoading(true);
     getArticlesById(article_id)
       .then((articleData) => {
+        console.log(articleData, "ejwejjsdjfdsjfjsdfjdsjfjdsjfdsjfjds");
         setArticle(articleData);
 
         setIsLoading(false);
@@ -28,6 +29,7 @@ export default function SingleArticle() {
 
   if (isLoading === true) return <p>Loading...</p>;
   if (err) return <ErrorPage />;
+  console.log(article, "THIS IS ARTICLE!");
   return (
     <section>
       <ArticlesCard

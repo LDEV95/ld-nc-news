@@ -14,6 +14,7 @@ export default function ArticlesCard({
   created_at,
   votes,
 }) {
+  console.log(title, article_id, "NEW LOG TITLE AND ARTICLE ID");
   const formattedDate = formatDate(created_at);
   const [err, setErr] = useState(null);
   const [newVote, updateVote] = useState(0);
@@ -38,12 +39,12 @@ export default function ArticlesCard({
 
   return (
     <article className="articleCard">
-      <Link to={`/articles/${article_id}`}>
+      <a href={`/articles/${article_id}`}>
         <h3 id="articleHeader">{title}</h3>
         {article_img_url && (
           <img src={article_img_url} alt={title} className="articleImage" />
         )}
-      </Link>
+      </a>
 
       <p className="article_Topic">
         Topic: {topic[0].toUpperCase() + topic.slice(1, topic.length)}
