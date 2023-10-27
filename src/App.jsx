@@ -6,6 +6,7 @@ import ArticlesList from "./components/articlesList";
 import SingleArticle from "./components/SingleArticle";
 import Comment from "./components/Comments";
 import { UserContext } from "./Contexts/UserContext";
+import TopicsPages from "./components/AllTopics";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -25,6 +26,7 @@ function App() {
           <Route path="/articles" element={<ArticlesList />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
           <Route path="/articles/:article_id/comments" element={<Comment />} />
+          <Route path="/topics" element={<TopicsPages />} />
         </Routes>
       </div>
     </UserContext.Provider>
