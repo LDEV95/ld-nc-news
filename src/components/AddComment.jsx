@@ -17,7 +17,7 @@ export default function AddComment({ article_id, setComments }) {
   const submit = (e) => {
     e.preventDefault();
     const newComment = {
-      username: "jessjelly",
+      username: "tickle122",
       body: comment,
     };
 
