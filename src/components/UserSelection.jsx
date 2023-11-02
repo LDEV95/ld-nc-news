@@ -1,4 +1,5 @@
 // UserSelection.jsx
+/*
 import { useState, useEffect } from "react";
 import * as api from "../../api";
 
@@ -22,3 +23,4 @@ export default function UserSelection({ onSelectUser }) {
     </select>
   );
 }
+*/

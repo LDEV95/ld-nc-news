@@ -14,7 +14,6 @@ export default function ArticlesCard({
   created_at,
   votes,
 }) {
-  console.log(title, article_id, "NEW LOG TITLE AND ARTICLE ID");
   const formattedDate = formatDate(created_at);
   const [err, setErr] = useState(null);
   const [newVote, updateVote] = useState(0);

@@ -15,7 +15,7 @@ export default function TopicsPages({ onSelectTopic }) {
 
   return (
     <select onChange={(e) => onSelectTopic(e.target.value)}>
-      <option value="">Select a topic</option>
+      <option value="">Browse articles by topic</option>
 
       {topics.map((eachTopic) => (
         <option key={eachTopic.slug} value={eachTopic.slug}>

@@ -4,9 +4,9 @@ const newsApi = axios.create({
   baseURL: "https://ldev-news-api-project.onrender.com/api",
 });
 
-export const getArticles = (topic, sort_by, order) => {
+export const getArticles = (topic, sort, order) => {
   return newsApi
-    .get("/articles", { params: { topic, sort_by, order } })
+    .get("/articles", { params: { topic, sort_by: sort, order: order } })
     .then(({ data }) => {
       return data;
     });
@@ -40,7 +40,6 @@ export const changeVote = (article_id, votes) => {
   return newsApi
     .patch(`/articles/${article_id}`, { inc_votes: votes })
     .then((response) => {
-      console.log(response);
       return response.data.article;
     });
 };
@@ -58,14 +57,16 @@ export const postComment = (article_id, newComment) => {
 
 export const getUsers = () => {
   return newsApi.get("/users").then(({ data }) => {
-    console.log(data);
     return data;
   });
 };
 
 export const getTopics = () => {
   return newsApi.get("/topics/").then(({ data }) => {
-    console.log(data);
     return data;
   });
+};
+
+export const deleteComment = (comment_id) => {
+  return newsApi.delete(`comments/${comment_id}`).then(() => {});
 };

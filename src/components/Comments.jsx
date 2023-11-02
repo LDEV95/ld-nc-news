@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import * as api from "../../api";
 import { useParams } from "react-router-dom";
 import AddComment from "./AddComment";
 import ErrorPage from "./Errors";
 import { formatDate } from "../../Formateddate";
+import { UserContext } from "../Contexts/UserContext";
 
 export default function Comments() {
   const { article_id } = useParams();
+  const { loggedInUser } = useContext(UserContext);
+
   const [comment, setComments] = useState([
     { comment_id: null, body: "", author: "", votes: 0, created_at: "" },
   ]);
@@ -28,6 +31,30 @@ export default function Comments() {
       });
   }, [article_id]);
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    const id = e.target.value;
+
+    // Update local state to remove the comment immediately
+    setComments((prevComments) => {
+      const updatedComments = prevComments.filter(
+        (singleComment) => singleComment.comment_id !== parseInt(id)
+      );
+      return updatedComments;
+    });
+
+    // Make the delete request to the server
+    api
+      .deleteComment(id)
+      .then((data) => {
+        console.log(data, "DATA");
+      })
+      .catch((err) => {
+        setErr(err);
+      });
+  };
+
   if (comment.length === 0) {
     return (
       <>
@@ -46,6 +73,7 @@ export default function Comments() {
 
       {comment.map(({ comment_id, body, author, votes, created_at }) => {
         const formattedDate = formatDate(created_at);
+
         return (
           <div className="comment_Container">
             <article>
@@ -55,6 +83,12 @@ export default function Comments() {
               <p className="commentText">{body}</p>
               <p className="commentText">{votes}</p>
             </article>
+
+            {loggedInUser.username === author ? (
+              <button value={comment_id} onClick={handleDelete}>
+                Delete comment
+              </button>
+            ) : null}
           </div>
         );
       })}

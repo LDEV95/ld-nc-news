@@ -3,17 +3,20 @@ import * as api from "../../api";
 import ArticlesCard from "./Articlescard";
 import { useParams } from "react-router-dom";
 import ErrorPage from "./Errors";
+import { SortBy } from "./sortBy";
 
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sort, setSort] = useState("created_at");
+  const [order, setOrder] = useState();
   const [err, setErr] = useState(null);
   const { topic } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
     api
-      .getArticles(/*topic*/)
+      .getArticles(topic, sort, order)
       .then(({ articles }) => {
         setArticles(articles);
         setIsLoading(false);
@@ -24,13 +27,14 @@ export default function ArticlesList() {
         setErr(true);
         setIsLoading(false);
       });
-  }, []);
+  }, [topic, sort, order]);
 
   if (isLoading) return <p id="loading">loading...</p>;
   if (err) return <ErrorPage />;
 
   return (
     <section>
+      <SortBy setSort={setSort} setOrder={setOrder} />
       <div className="bigContainer">
         {articles.map(
           ({

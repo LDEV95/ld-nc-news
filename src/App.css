@@ -1,5 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&family=Roboto:ital,wght@1,300&display=swap");
+
+html {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+header {
+  color: black;
+  font-size: 1.75em;
+}
+
+.articles_header {
+  color: black;
+  text-decoration: none;
+}
+
+.home_header {
+  color: black;
+  text-decoration: none;
+}
+
 .articleImage {
-  max-width: 50%;
+  max-width: 60%;
+  border: 3px solid #c3acd0;
+  border-radius: 3px;
 }
 
 li {
@@ -8,7 +31,6 @@ li {
 
 .mainHeading {
   text-align: center;
-  text-decoration: underline;
 }
 
 .home_Text {
@@ -19,8 +41,8 @@ li {
   font-size: 0.5px;
 }
 
-.comment_Container {
-  border: 2px solid red;
+.articleHeader {
+  color: black;
 }
 
 .bigContainer {
