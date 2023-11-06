@@ -8,6 +8,7 @@ export const getArticles = (topic, sort, order) => {
   return newsApi
     .get("/articles", { params: { topic, sort_by: sort, order: order } })
     .then(({ data }) => {
+      console.log(data);
       return data;
     });
 };

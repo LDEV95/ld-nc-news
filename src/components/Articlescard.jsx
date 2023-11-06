@@ -48,7 +48,7 @@ export default function ArticlesCard({
       <p className="article_Topic">
         Topic: {topic[0].toUpperCase() + topic.slice(1, topic.length)}
       </p>
-
+      <p className="article_Bod"> {body}</p>
       <p className="article_Comments"> Comments: {comment_count}</p>
       <p className="article_Author"> Written by: {author}</p>
       <p className="article_CreatedAt"> Created on: {formattedDate}</p>

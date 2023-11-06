@@ -31,7 +31,7 @@ export default function SingleArticle() {
   if (err) return <ErrorPage />;
   console.log(article, "THIS IS ARTICLE!");
   return (
-    <section>
+    <section className="singleArt">
       <ArticlesCard
         key={article.article_id}
         article_id={article.article_id}

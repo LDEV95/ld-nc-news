@@ -55,13 +55,17 @@ export default function ArticlesList() {
                   title={title}
                   article_id={article_id}
                   article_img_url={article_img_url}
-                  body={body}
+                  // body={body}
                   topic={topic}
                   comment_count={comment_count}
                   author={author}
                   created_at={created_at}
                   votes={votes}
                 />
+                <span className="navItem">
+                  <TopicsPages onSelectTopic={setSelectedTopic} />
+                  <TopicsByArticle selectedTopic={selectedTopic} />
+                </span>
               </div>
             );
           }
